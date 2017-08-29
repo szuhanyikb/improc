@@ -25,6 +25,7 @@ int main()
 	points.push_back(Point(636, 86));
 	points.push_back(Point(491, 359));
 	points.push_back(Point(236, 394));
+
 	cutROI("D:\\Documents\\Pictures", "Koala.jpg", points);
 
     return 0;
@@ -35,9 +36,8 @@ void cutROI(string imPathRoot, string imFileName, vector<Point> points)
 	string imPath = imPathRoot + "\\" + imFileName;
 	int psize = points.size();
 	Mat im = imread(imPath, CV_LOAD_IMAGE_COLOR);	//CV_LOAD_IMAGE_COLOR, CV_LOAD_IMAGE_GRAYSCALE
-	bool imok = im.data != NULL;
 
-	if (psize <= 8 && imok) {
+	if (psize <= 8 && im.data != NULL) {
 		namedWindow("ImageDisplay", 1);
 
 		for (auto it = points.begin(); it != points.end(); ++it) {
